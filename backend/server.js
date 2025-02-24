@@ -3,14 +3,15 @@ const express = require('express');
 const mysql = require('mysql2');
 
 const app = express();
-const port = 5000; // mund ta ndryshosh sipas dëshirës
+const port = 5001; // mund ta ndryshosh sipas dëshirës
 
 // Krijimi i lidhjes me MySQL
 const db = mysql.createConnection({
   host: 'localhost',
-  user: 'root',  // Përdoruesi për bazën e të dhënave
-  password: '',  // Fjalëkalimi i përdoruesit
-  database: 'event_management' // Emri i bazës së të dhënave
+  user: 'homestead',  // Përdoruesi për bazën e të dhënave
+  password: 'secret',  // Fjalëkalimi i përdoruesit
+  database: 'rrenjet', // Emri i bazës së të dhënave
+  port: 8889
 });
 
 db.connect((err) => {
