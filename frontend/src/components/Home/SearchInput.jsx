@@ -80,6 +80,7 @@ const SearchInput = () => {
           <input
             id="search"
             ref={inputRef}
+            autoComplete="off"
             name="search"
             type="text"
             value={query}

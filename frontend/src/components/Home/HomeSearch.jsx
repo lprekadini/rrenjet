@@ -30,24 +30,9 @@ export default function HomeSearch({img}) {
                 <p className="mt-2 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
                 Eksploro historinë e pasur dhe frymëzuese të personaliteteve shqiptare.
                 </p>
+
                 <SearchInput />
-                {/* <div className="mt-10 flex items-center justify-center gap-x-6">
-                  <div className="mt-2 w-full">
-                    <div className="flex rounded-md bg-white outline outline-1 -outline-offset-1 outline-gray-300 focus-within:outline focus-within:outline-2 focus-within:-outline-offset-2 focus-within:outline-indigo-600">
-                      <input
-                        id="search"
-                        name="search"
-                        type="text"
-                        className="block min-w-0 grow px-3 py-1.5 text-lg text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0"
-                      />
-                      <div className="flex py-1.5 pr-1.5">
-                        <kbd className="inline-flex items-center rounded border border-gray-200 px-1 font-sans text-xs text-gray-400">
-                          ⌘K
-                        </kbd>
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
+                
               </div>
               <div className="mt-16 flow-root sm:mt-24">
                 <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">

@@ -1,38 +1,34 @@
-// server.js
 const express = require('express');
-const mysql = require('mysql2');
+const authRoutes = require('./routes/auth');
+const authMiddleware = require('./middleware/authMiddleware');
+
+const cors = require('cors');
+const path = require('path');
+const personalitiesRoutes = require('./routes/personalities');
 
 const app = express();
-const port = 5001; // mund ta ndryshosh sipas dëshirës
+const PORT = 5001;
 
-// Krijimi i lidhjes me MySQL
-const db = mysql.createConnection({
-  host: 'localhost',
-  user: 'homestead',  // Përdoruesi për bazën e të dhënave
-  password: 'secret',  // Fjalëkalimi i përdoruesit
-  database: 'rrenjet', // Emri i bazës së të dhënave
-  port: 8889
+// Middleware
+app.use(express.json());
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.use('/api/auth', authRoutes);
+
+
+// Rrugët (Routes)
+app.use('/api/personalities', personalitiesRoutes);
+
+// Starto serverin
+app.listen(PORT, () => {
+    console.log(`✅ Serveri është duke punuar në http://localhost:${PORT}`);
 });
 
-db.connect((err) => {
-  if (err) {
-    console.error('Gabim lidhjeje me bazën e të dhënave:', err);
-  } else {
-    console.log('Lidhja me bazën e të dhënave është e suksesshme!');
-  }
-});
 
-// Endpoint për të marrë të dhënat nga baza
-app.get('/api/events', (req, res) => {
-  db.query('SELECT * FROM events', (err, results) => {
-    if (err) {
-      return res.status(500).json({ error: 'Ka ndodhur një gabim' });
-    }
-    res.json(results);
-  });
-});
-
-// Startimi i serverit
-app.listen(port, () => {
-  console.log(`Serveri po funksionon në portin ${port}`);
-});
+// app.get('/api/admin', authMiddleware(['admin']), (req, res) => {
+//     res.json({ message: 'Mirësevini, admin!' });
+// });

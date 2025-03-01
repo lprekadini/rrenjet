@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import Home from './views/Home';
+import Auth from './views/Auth';
 import About from './views/About';
 import Explore from './views/Explore';
 import NotFound from './views/NotFound';
@@ -14,6 +15,7 @@ const App = () => (
       <Route element={<MainLayout />}>
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/auth" element={<Auth />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/single/:id" element={<SingleItem />} />
         <Route path="*" element={<NotFound />} />
