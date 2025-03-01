@@ -127,18 +127,26 @@ export default function Navbar() {
                     </a>
                   </MenuItem>
                   <MenuItem>
-                    <a
-                      href="#"
-                      disabled
-                      className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
+                    <Link
+                      key="dashboard"
+                      to="dashboard"
+                      aria-current={
+                        location.pathname == "/dashboard" ? "page" : undefined
+                      }
+                      className={classNames(
+                        location.pathname == "/dashboard"
+                          ? "bg-gray-900 text-white"
+                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
+                        "rounded-md px-3 py-2 text-sm font-medium"
+                      )}
                     >
-                      Settings
-                    </a>
+                      Dashboard
+                    </Link>
                   </MenuItem>
                   <MenuItem>
                     <button
                       onClick={logout}
-                      className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
+                      className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none w-full"
                     >
                       Logout
                     </button>

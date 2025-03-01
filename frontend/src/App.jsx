@@ -1,26 +1,23 @@
+import { BrowserRouter as Router } from "react-router-dom";
+import MainLayout from "./layouts/MainLayout";
+import DashboardLayout from "./layouts/DashboardLayout"; 
+import Home from "./views/Home";
+import Auth from "./views/Auth";
+import About from "./views/About";
+import Explore from "./views/Explore";
+import NotFound from "./views/NotFound";
+import SingleItem from "./views/SingleItem";
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MainLayout from './layouts/MainLayout';
-import Home from './views/Home';
-import Auth from './views/Auth';
-import About from './views/About';
-import Explore from './views/Explore';
-import NotFound from './views/NotFound';
-import SingleItem from './views/SingleItem';
-import './App.css'
+import Dashboard from "./views/dashboard/Dashboard"; // Dashboard pages
+// import DashboardUsers from "./views/dashboard/DashboardUsers"; // Example dashboard page
+// import DashboardSettings from "./views/dashboard/DashboardSettings"; // Example settings page
+import AppRoutes from "./routes";
+
+import "./App.css";
 
 const App = () => (
   <Router>
-    <Routes>
-      <Route element={<MainLayout />}>
-        <Route path="/home" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/auth" element={<Auth />} />
-        <Route path="/explore" element={<Explore />} />
-        <Route path="/single/:id" element={<SingleItem />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+        <AppRoutes />
   </Router>
 );
 
