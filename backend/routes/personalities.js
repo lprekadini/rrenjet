@@ -2,21 +2,24 @@ const express = require('express');
 const { Personality, Category } = require('../models');
 const upload = require('../middleware/upload');
 const router = express.Router();
+const multer = require('multer');
+
 
 router.post('/', upload.single('image'), async (req, res) => {
     try {
         const { name, biography, birth_date, categories } = req.body;
-        const image_path = req.file ? req.file.path : null;
+        const image_url = req.file ? `/uploads/${req.file.filename}` : null; // Store public path
 
         const personality = await Personality.create({ 
             name, 
             biography, 
             birth_date, 
-            image_path 
+            image_url
         });
 
         if (categories) {
-            const categoryInstances = await Category.findAll({ where: { id: categories } });
+            const categoryIds = Array.isArray(categories) ? categories : JSON.parse(categories);
+            const categoryInstances = await Category.findAll({ where: { id: categoryIds } });
             await personality.addCategories(categoryInstances);
         }
 
@@ -54,28 +57,39 @@ router.put('/:id', upload.single('image'), async (req, res) => {
     try {
         const { id } = req.params;
         const { name, biography, birth_date, categories } = req.body;
-        const image_path = req.file ? req.file.path : null;
+
+        // If a new image is uploaded, update the image URL; otherwise, keep the old one
+        const image_url = req.file ? `/uploads/${req.file.filename}` : undefined;
 
         const personality = await Personality.findByPk(id);
         if (!personality) {
             return res.status(404).json({ error: 'Personaliteti nuk u gjet!' });
         }
 
+        // Update personality data
         await personality.update({
             name,
             biography,
             birth_date,
-            image_path: image_path || personality.image_path
+            image_url: image_url || personality.image_url, // Keep old image if no new one is provided
         });
 
+        // Handle categories (optional)
         if (categories) {
-            const categoryInstances = await Category.findAll({ where: { id: categories } });
+            let categoryIds;
+            try {
+                categoryIds = Array.isArray(categories) ? categories : JSON.parse(categories);
+            } catch (err) {
+                return res.status(400).json({ error: 'Invalid category format' });
+            }
+
+            const categoryInstances = await Category.findAll({ where: { id: categoryIds } });
             await personality.setCategories(categoryInstances);
         }
 
         res.json(personality);
     } catch (error) {
-        console.error(error);
+        console.error('Error updating personality:', error);
         res.status(500).json({ error: 'Gabim gjatë përditësimit të personalitetit!' });
     }
 });

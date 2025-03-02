@@ -133,12 +133,8 @@ export default function Navbar() {
                       aria-current={
                         location.pathname == "/dashboard" ? "page" : undefined
                       }
-                      className={classNames(
-                        location.pathname == "/dashboard"
-                          ? "bg-gray-900 text-white"
-                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "rounded-md px-3 py-2 text-sm font-medium"
-                      )}
+                      className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none"
+
                     >
                       Dashboard
                     </Link>
@@ -146,7 +142,7 @@ export default function Navbar() {
                   <MenuItem>
                     <button
                       onClick={logout}
-                      className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none w-full"
+                      className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none w-full text-left"
                     >
                       Logout
                     </button>
@@ -182,8 +178,4 @@ export default function Navbar() {
       </DisclosurePanel>
     </Disclosure>
   );
-}
-
-{
-  /* <li><Link to="/about">About</Link></li> */
 }

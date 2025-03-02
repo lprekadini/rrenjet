@@ -7,9 +7,10 @@ import About from "./views/About";
 import Explore from "./views/Explore";
 import NotFound from "./views/NotFound";
 import SingleItem from "./views/SingleItem";
-import Dashboard from "./views/dashboard/Dashboard";
-// import DashboardUsers from "./views/dashboard/Users";
-// import DashboardSettings from "./views/dashboard/Settings";
+
+import Dashboard from "./views/Dashboard/Dashboard";
+import DashboardParticipants from "./views/Dashboard/Participants/Participants";
+import ParticipantsEdit from "./views/Dashboard/Participants/ParticipantsEdit";
 
 const AppRoutes = () => {
   return (
@@ -26,8 +27,8 @@ const AppRoutes = () => {
       {/* Dashboard Layout */}
       <Route element={<DashboardLayout />}>
         <Route path="/dashboard" element={<Dashboard />} />
-        {/* <Route path="/dashboard/users" element={<DashboardUsers />} />
-        <Route path="/dashboard/settings" element={<DashboardSettings />} /> */}
+        <Route path="/dashboard/participants" element={<DashboardParticipants />} />
+        <Route path="/dashboard/participants/:id?" element={<ParticipantsEdit />} />
       </Route>
 
       {/* 404 Page */}

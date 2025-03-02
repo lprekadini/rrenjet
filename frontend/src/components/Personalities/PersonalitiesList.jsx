@@ -28,7 +28,7 @@ const PersonalitiesList = () => {
                             <p dangerouslySetInnerHTML={{ __html: personality.biography }} />
                             {personality.image_url && (
                                 <img 
-                                    src={`http://localhost:5001/uploads/${personality.image_url}`} 
+                                    src={`http://localhost:5001${personality.image_url}`} 
                                     alt={personality.name} 
                                     width="200"
                                 />

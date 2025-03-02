@@ -16,9 +16,9 @@ export default function Home() {
       <main className="isolate overflow-hidden">
         <HomeSearch img={ademJashariImg}/>
         <Testimonial img={ademJashariImg}/>
-        +++
+        
         <List />
-        ----
+        
       </main>
     </div>
   );
