@@ -32,6 +32,7 @@ export default function SingleItem() {
                   <div className="flex justify-between">
                     <h1 className="text-2xl font-medium text-gray-900">
                       {item.name}
+                      <small>{item.profession}</small>
                     </h1>
                     <div>
                       {item.birth_date.split("T")[0]}{" "}

@@ -10,6 +10,7 @@ router.post("/", upload.single("image"), async (req, res) => {
       biography,
       birth_date,
       short_description,
+      profession,
       death_date,
       categories,
     } = req.body;
@@ -20,6 +21,7 @@ router.post("/", upload.single("image"), async (req, res) => {
       biography,
       birth_date,
       short_description,
+      profession,
       death_date,
       image_url,
     });
@@ -82,6 +84,7 @@ router.put("/:id", upload.single("image"), async (req, res) => {
       biography,
       birth_date,
       short_description,
+      profession,
       death_date,
       categories,
     } = req.body;
@@ -100,6 +103,7 @@ router.put("/:id", upload.single("image"), async (req, res) => {
       biography,
       birth_date,
       short_description,
+      profession,
       death_date,
       image_url: image_url || personality.image_url, // Keep old image if no new one is provided
     });

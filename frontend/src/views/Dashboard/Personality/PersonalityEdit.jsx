@@ -48,7 +48,7 @@ export default function PersonalityEdit() {
       setPersonality({
         name: "",
         biography: "",
-        birth_date: "",  short_description: "", death_date: "",
+        birth_date: "",  short_description: "", death_date: "", profession: "",
         image_url: "",
       });
       setPreview("");
@@ -88,6 +88,7 @@ export default function PersonalityEdit() {
     formData.append("biography", personality.biography);
     formData.append("death_date", personality.death_date);
     formData.append("short_description", personality.short_description);
+    formData.append("profession", personality.profession);
     formData.append("birth_date", personality.birth_date.split("T")[0]);
     formData.append("categories", JSON.stringify(selectedCategories));
 
@@ -134,6 +135,21 @@ export default function PersonalityEdit() {
                   value={personality?.name || ""}
                   onChange={(e) =>
                     setPersonality({ ...personality, name: e.target.value })
+                  }
+                  className="block w-full rounded-md border border-gray-300 p-2 text-base text-gray-900"
+                />
+              </div>
+            </div>
+            <div className="sm:col-span-4">
+              <label className="block text-sm font-medium text-gray-900">
+              Profession
+              </label>
+              <div className="mt-2">
+                <input
+                  type="text"
+                  value={personality?.profession || ""}
+                  onChange={(e) =>
+                    setPersonality({ ...personality, profession: e.target.value })
                   }
                   className="block w-full rounded-md border border-gray-300 p-2 text-base text-gray-900"
                 />

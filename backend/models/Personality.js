@@ -9,6 +9,7 @@ const Personality = sequelize.define("Personality", {
   death_date: DataTypes.DATE,
   image_url: DataTypes.STRING,
   video_url: DataTypes.STRING,
+  profession: DataTypes.STRING,
 });
 
 Personality.associate = (models) => {
