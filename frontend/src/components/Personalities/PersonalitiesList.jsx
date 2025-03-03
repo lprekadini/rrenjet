@@ -27,21 +27,21 @@ const PersonalitiesList = () => {
         </h2>
         {personalities.length > 0 ? (
           <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-            {personalities.map((product) => (
+            {personalities.map((person) => (
               <Link
-                key={product.id}
-                to={`/single/${product.id}`}
+                key={person.id}
+                to={`/single/${person.id}`}
                 className="group relative"
               >
                 <img
-                  alt={product.name}
-                  src={`${API_BASE_URL}${product.image_url}`}
+                  alt={person.name}
+                  src={`${API_BASE_URL}${person.image_url}`}
                   className="aspect-square w-full overflow-hidden rounded-lg object-cover group-hover:opacity-75 sm:aspect-[2/3]"
                 />
                 <div className="mt-4 flex items-center justify-between text-base font-medium text-gray-900">
-                  <h3>{product.name}</h3>
+                  <h3>{person.name}</h3>
                   <div className="absolute top-3 right-3">
-                  {product.Categories.map((cat) => (
+                  {person.Categories.map((cat) => (
                     <span key={cat.id} className="inline-flex items-center rounded-full bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/20 ml-2">
                       <span>{cat.name}</span>
                     </span>

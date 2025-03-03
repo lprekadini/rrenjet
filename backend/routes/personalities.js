@@ -5,13 +5,22 @@ const router = express.Router();
 
 router.post("/", upload.single("image"), async (req, res) => {
   try {
-    const { name, biography, birth_date, categories } = req.body;
+    const {
+      name,
+      biography,
+      birth_date,
+      short_description,
+      death_date,
+      categories,
+    } = req.body;
     const image_url = req.file ? `/uploads/${req.file.filename}` : null; // Store public path
 
     const personality = await Personality.create({
       name,
       biography,
       birth_date,
+      short_description,
+      death_date,
       image_url,
     });
 
@@ -68,7 +77,14 @@ router.get("/:id", async (req, res) => {
 router.put("/:id", upload.single("image"), async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, biography, birth_date, categories } = req.body;
+    const {
+      name,
+      biography,
+      birth_date,
+      short_description,
+      death_date,
+      categories,
+    } = req.body;
 
     // If a new image is uploaded, update the image URL; otherwise, keep the old one
     const image_url = req.file ? `/uploads/${req.file.filename}` : undefined;
@@ -83,6 +99,8 @@ router.put("/:id", upload.single("image"), async (req, res) => {
       name,
       biography,
       birth_date,
+      short_description,
+      death_date,
       image_url: image_url || personality.image_url, // Keep old image if no new one is provided
     });
 

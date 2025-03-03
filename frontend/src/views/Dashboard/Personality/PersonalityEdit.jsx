@@ -48,7 +48,7 @@ export default function PersonalityEdit() {
       setPersonality({
         name: "",
         biography: "",
-        birth_date: "",
+        birth_date: "",  short_description: "", death_date: "",
         image_url: "",
       });
       setPreview("");
@@ -86,6 +86,8 @@ export default function PersonalityEdit() {
     const formData = new FormData();
     formData.append("name", personality.name);
     formData.append("biography", personality.biography);
+    formData.append("death_date", personality.death_date);
+    formData.append("short_description", personality.short_description);
     formData.append("birth_date", personality.birth_date.split("T")[0]);
     formData.append("categories", JSON.stringify(selectedCategories));
 
@@ -145,12 +147,30 @@ export default function PersonalityEdit() {
               </label>
               <div className="mt-2">
                 <textarea
-                  rows={4}
+                  rows={9}
                   value={personality?.biography || ""}
                   onChange={(e) =>
                     setPersonality({
                       ...personality,
                       biography: e.target.value,
+                    })
+                  }
+                  className="block w-full rounded-md border border-gray-300 p-2 text-base text-gray-900"
+                />
+              </div>
+            </div>
+            <div className="col-span-full">
+              <label className="block text-sm font-medium text-gray-900">
+                Short Description
+              </label>
+              <div className="mt-2">
+                <textarea
+                  rows={4}
+                  value={personality?.short_description || ""}
+                  onChange={(e) =>
+                    setPersonality({
+                      ...personality,
+                      short_description: e.target.value,
                     })
                   }
                   className="block w-full rounded-md border border-gray-300 p-2 text-base text-gray-900"
@@ -230,6 +250,23 @@ export default function PersonalityEdit() {
                 }
                 onChange={(e) =>
                   setPersonality({ ...personality, birth_date: e.target.value })
+                }
+                className="block w-full rounded-md border border-gray-300 p-2 text-base text-gray-900"
+              />
+            </div>
+            <div className="sm:col-span-4">
+              <label className="block text-sm font-medium text-gray-900">
+                Death Day
+              </label>
+              <input
+                type="date"
+                value={
+                  personality?.death_date
+                    ? personality.death_date.split("T")[0]
+                    : ""
+                }
+                onChange={(e) =>
+                  setPersonality({ ...personality, death_date: e.target.value })
                 }
                 className="block w-full rounded-md border border-gray-300 p-2 text-base text-gray-900"
               />
