@@ -1,4 +1,5 @@
 const express = require("express");
+const { Op } = require("sequelize");
 const { Personality, Category } = require("../models");
 const upload = require("../middleware/upload");
 const router = express.Router();
@@ -40,6 +41,31 @@ router.post("/", upload.single("image"), async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Gabim gjatë krijimit të personalitetit!" });
+  }
+});
+
+// Search personalities by name
+router.get("/search", async (req, res) => {
+  try {
+    const { q } = req.query;
+
+    if (!q || q.length < 3) {
+      return res.json([]);
+    }
+
+    const personalities = await Personality.findAll({
+      where: {
+        name: {
+          [Op.like]: `%${q}%`, // Case-insensitive search
+        },
+      },
+      limit: 10, // Limit results
+    });
+
+    res.json(personalities);
+  } catch (error) {
+    console.error("Search error:", error);
+    res.status(500).json({ error: "Server error" });
   }
 });
 

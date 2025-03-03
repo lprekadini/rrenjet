@@ -1,38 +1,33 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const SearchInput = () => {
-  const [query, setQuery] = useState('');
+  const navigate = useNavigate();
+
+  const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-
   const inputRef = useRef(null);
 
-  // Mocked suggestions (could be fetched from an API)
-  const allSuggestions = [
-    'Adem Jashari',
-    'Adem Prekadini',
-    'Skenderbeu',
-    'Date',
-    'Elderberry',
-    'Fig',
-    'Grape',
-    'Honeydew',
-  ];
-
   // Handle input change
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     const value = e.target.value;
     setQuery(value);
-    
+
     if (value.length >= 3) {
-      const filteredSuggestions = allSuggestions.filter((item) =>
-        item.toLowerCase().includes(value.toLowerCase())
-      );
-      setSuggestions(filteredSuggestions);
-      setShowSuggestions(true);
-      setActiveIndex(0);
+      try {
+        const response = await fetch(
+          `http://localhost:5001/api/personalities/search?q=${value}`
+        );
+        const data = await response.json();
+        setSuggestions(data);
+        setShowSuggestions(true);
+        setActiveIndex(0);
+      } catch (error) {
+        console.error("Error fetching suggestions:", error);
+      }
     } else {
       setShowSuggestions(false);
     }
@@ -42,35 +37,37 @@ const SearchInput = () => {
   const handleSelect = (value) => {
     setQuery(value);
     setShowSuggestions(false);
-    console.log('Search for:', value); // Replace with your search logic
+    navigate(`/explore/single/${value.id}`);
   };
 
   // Handle keyboard events
   const handleKeyDown = (e) => {
-    if (e.key === 'ArrowDown') {
+    if (e.key === "ArrowDown") {
       setActiveIndex((prevIndex) =>
         prevIndex < suggestions.length - 1 ? prevIndex + 1 : prevIndex
       );
-    } else if (e.key === 'ArrowUp') {
-      setActiveIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
-    } else if (e.key === 'Enter') {
+    } else if (e.key === "ArrowUp") {
+      setActiveIndex((prevIndex) =>
+        prevIndex > 0 ? prevIndex - 1 : prevIndex
+      );
+    } else if (e.key === "Enter") {
       if (suggestions.length > 0) {
         handleSelect(suggestions[activeIndex]);
       }
     }
   };
 
-   // Focus input on Cmd + K (Mac) or Ctrl + K (Windows/Linux)
-   useEffect(() => {
+  // Focus input on Cmd + K (Mac) or Ctrl + K (Windows/Linux)
+  useEffect(() => {
     const handleShortcut = (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         inputRef.current.focus();
       }
     };
 
-    window.addEventListener('keydown', handleShortcut);
-    return () => window.removeEventListener('keydown', handleShortcut);
+    window.addEventListener("keydown", handleShortcut);
+    return () => window.removeEventListener("keydown", handleShortcut);
   }, []);
 
   return (
@@ -100,13 +97,15 @@ const SearchInput = () => {
           <ul className="absolute z-10 w-full bg-white border border-gray-300 rounded-md mt-1 shadow-lg">
             {suggestions.map((item, index) => (
               <li
-                key={item}
+                key={item.id}
                 className={`px-4 py-2 cursor-pointer ${
-                  index === activeIndex ? 'border rounded-md border-indigo-400 bg-indigo-100' : 'hover:bg-gray-100'
+                  index === activeIndex
+                    ? "border rounded-md border-indigo-400 bg-indigo-100"
+                    : "hover:bg-gray-100"
                 }`}
                 onMouseDown={() => handleSelect(item)}
               >
-                {item}
+                {item.name}
               </li>
             ))}
           </ul>

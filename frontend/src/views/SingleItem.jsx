@@ -30,10 +30,14 @@ export default function SingleItem() {
               <div className="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
                 <div className="lg:col-span-5 lg:col-start-8">
                   <div className="flex justify-between">
-                    <h1 className="text-2xl font-medium text-gray-900">
-                      {item.name}
-                      <small>{item.profession}</small>
-                    </h1>
+                    <div>
+                      <h1 className="text-2xl font-medium text-gray-900 m-0">
+                        {item.name}
+                      </h1>
+                      <small className="text-base text-gray-600">
+                        {item.profession}
+                      </small>
+                    </div>
                     <div>
                       {item.birth_date.split("T")[0]}{" "}
                       {item.death_date

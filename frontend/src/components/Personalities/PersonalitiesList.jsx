@@ -30,7 +30,7 @@ const PersonalitiesList = () => {
             {personalities.map((person) => (
               <Link
                 key={person.id}
-                to={`/single/${person.id}`}
+                to={`/explore/single/${person.id}`}
                 className="group relative"
               >
                 <img

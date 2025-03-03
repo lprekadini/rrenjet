@@ -25,7 +25,7 @@ const AppRoutes = () => {
         <Route path="/about" element={<About />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/single/:id" element={<SingleItem />} />
+        <Route path="/explore/single/:id" element={<SingleItem />} />
       </Route>
 
       {/* Dashboard Layout */}

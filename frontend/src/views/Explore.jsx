@@ -55,7 +55,7 @@ export default function Explore() {
 
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
           {items.map((person) => (
-            <Link key={person.id} to={`/single/${person.id}`} className="group">
+            <Link key={person.id} to={`/explore/single/${person.id}`} className="group">
               <img
                 alt={person.name}
                 src={`${API_BASE_URL}${person.image_url}`}
