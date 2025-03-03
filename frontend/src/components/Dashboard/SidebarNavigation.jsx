@@ -12,11 +12,11 @@ import {
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: HomeIcon },
   {
-    name: "Participants",
-    href: "/dashboard/participants",
+    name: "Personality",
+    href: "/dashboard/personality",
     icon: UsersIcon,
   },
-  // { name: "Projects", href: "#", icon: FolderIcon },
+  { name: "Categories", href: "/dashboard/categories", icon: FolderIcon },
   // { name: "Calendar", href: "#", icon: CalendarIcon },
   // { name: "Documents", href: "#", icon: DocumentDuplicateIcon },
   // { name: "Reports", href: "#", icon: ChartPieIcon },

@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Home from "./views/Home";
@@ -9,12 +9,16 @@ import NotFound from "./views/NotFound";
 import SingleItem from "./views/SingleItem";
 
 import Dashboard from "./views/Dashboard/Dashboard";
-import DashboardParticipants from "./views/Dashboard/Participants/Participants";
-import ParticipantsEdit from "./views/Dashboard/Participants/ParticipantsEdit";
+import DashboardPersonality from "./views/Dashboard/Personality/Personality";
+import PersonalityEdit from "./views/Dashboard/Personality/PersonalityEdit";
+import DashboardCategories from "./views/Dashboard/Categories/Categories";
+import CategoryEdit from "./views/Dashboard/Categories/CategoryEdit";
 
 const AppRoutes = () => {
   return (
     <Routes>
+      <Route path="/" element={<Navigate to="/home" replace />} />
+
       {/* Main Layout Routes */}
       <Route element={<MainLayout />}>
         <Route path="/home" element={<Home />} />
@@ -27,8 +31,18 @@ const AppRoutes = () => {
       {/* Dashboard Layout */}
       <Route element={<DashboardLayout />}>
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dashboard/participants" element={<DashboardParticipants />} />
-        <Route path="/dashboard/participants/:id?" element={<ParticipantsEdit />} />
+
+        <Route
+          path="/dashboard/personality"
+          element={<DashboardPersonality />}
+        />
+        <Route
+          path="/dashboard/personality/:id?"
+          element={<PersonalityEdit />}
+        />
+
+        <Route path="/dashboard/categories" element={<DashboardCategories />} />
+        <Route path="/dashboard/category/:id?" element={<CategoryEdit />} />
       </Route>
 
       {/* 404 Page */}

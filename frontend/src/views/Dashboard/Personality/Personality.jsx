@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { fetchPersonalities, deletePersonality } from "../../../services/api";
 
-export default function Participants() {
+export default function Personality() {
   const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
   const [personalities, setPersonalities] = useState([]);
   const deletePerson = async (id, e) => {
@@ -19,6 +19,7 @@ export default function Participants() {
     const getPersonalities = async () => {
       try {
         const response = await fetchPersonalities();
+        console.log("response.data", response.data);
         setPersonalities(response.data);
       } catch (error) {
         console.error("❌ Gabim gjatë marrjes së personaliteteve:", error);
@@ -29,10 +30,10 @@ export default function Participants() {
   }, []);
   return (
     <>
-      <div class="mb-6 flex items-center justify-end gap-x-6">
+      <div className="mb-6 flex items-center justify-end gap-x-6">
         <Link
           key="new"
-          to={`/dashboard/participants/new`}
+          to={`/dashboard/personality/new`}
           className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:bg-indigo-500"
         >
           add new
@@ -57,12 +58,17 @@ export default function Participants() {
               <h3 className="mt-6 text-sm font-medium text-gray-900">
                 {person.name}
               </h3>
+              <p className="mt-6 text-sm font-small text-gray-900">
+                {person.birth_date.split("T")[0]}
+              </p>
               <dl className="mt-1 flex grow flex-col justify-between">
                 <dt className="sr-only">Role</dt>
                 <dd className="mt-3">
-                  <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                    {person.birth_date.split("T")[0]}
-                  </span>
+                  {person.Categories.map((cat) => (
+                    <span key={cat.id} className="inline-flex items-center rounded-full bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 mr-2">
+                      <span>{cat.name}</span>
+                    </span>
+                  ))}
                 </dd>
               </dl>
             </div>
@@ -83,7 +89,7 @@ export default function Participants() {
                 <div className="-ml-px flex w-0 flex-1">
                   <Link
                     key={person.id}
-                    to={`/dashboard/participants/${person.id}`}
+                    to={`/dashboard/personality/${person.id}`}
                     className="relative inline-flex text-yellow-500 w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900"
                   >
                     <PencilIcon

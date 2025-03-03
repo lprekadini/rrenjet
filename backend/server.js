@@ -1,10 +1,12 @@
 const express = require('express');
 const authRoutes = require('./routes/auth');
-const authMiddleware = require('./middleware/authMiddleware');
 
 const cors = require('cors');
 const path = require('path');
+
+//import api routes
 const personalitiesRoutes = require('./routes/personalities');
+const categoryRoutes = require('./routes/categories');
 
 const app = express();
 const PORT = 5001;
@@ -20,15 +22,12 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/auth', authRoutes);
 
 
-// Rrugët (Routes)
+// Routes
 app.use('/api/personalities', personalitiesRoutes);
+app.use('/api/categories', categoryRoutes);
 
-// Starto serverin
+
+// start server
 app.listen(PORT, () => {
     console.log(`✅ Serveri është duke punuar në http://localhost:${PORT}`);
 });
-
-
-// app.get('/api/admin', authMiddleware(['admin']), (req, res) => {
-//     res.json({ message: 'Mirësevini, admin!' });
-// });
