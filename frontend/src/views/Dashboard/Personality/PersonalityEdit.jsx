@@ -14,6 +14,7 @@ import {
   ListboxOptions,
 } from "@headlessui/react";
 import { ChevronUpDownIcon, CheckIcon } from "@heroicons/react/20/solid";
+import TextEditor from "../../../components/TextEditor";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -48,7 +49,10 @@ export default function PersonalityEdit() {
       setPersonality({
         name: "",
         biography: "",
-        birth_date: "",  short_description: "", death_date: "", profession: "",
+        birth_date: "",
+        short_description: "",
+        death_date: "",
+        profession: "",
         image_url: "",
       });
       setPreview("");
@@ -142,14 +146,17 @@ export default function PersonalityEdit() {
             </div>
             <div className="sm:col-span-4">
               <label className="block text-sm font-medium text-gray-900">
-              Profession
+                Profession
               </label>
               <div className="mt-2">
                 <input
                   type="text"
                   value={personality?.profession || ""}
                   onChange={(e) =>
-                    setPersonality({ ...personality, profession: e.target.value })
+                    setPersonality({
+                      ...personality,
+                      profession: e.target.value,
+                    })
                   }
                   className="block w-full rounded-md border border-gray-300 p-2 text-base text-gray-900"
                 />
@@ -162,7 +169,16 @@ export default function PersonalityEdit() {
                 Biography
               </label>
               <div className="mt-2">
-                <textarea
+                <TextEditor
+                  value={personality?.biography || ""}
+                  onChange={(content) =>
+                    setPersonality({
+                      ...personality,
+                      biography: content,
+                    })
+                  }
+                />
+                {/* <textarea
                   rows={9}
                   value={personality?.biography || ""}
                   onChange={(e) =>
@@ -172,7 +188,7 @@ export default function PersonalityEdit() {
                     })
                   }
                   className="block w-full rounded-md border border-gray-300 p-2 text-base text-gray-900"
-                />
+                /> */}
               </div>
             </div>
             <div className="col-span-full">

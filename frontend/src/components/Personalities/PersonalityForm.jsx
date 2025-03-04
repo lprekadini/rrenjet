@@ -1,7 +1,6 @@
 // components/PersonalityForm.jsx
 import React, { useState } from "react";
 import axios from "axios";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 const PersonalityForm = () => {
@@ -51,7 +50,7 @@ const PersonalityForm = () => {
         placeholder="Emri"
         required
       />
-      <ReactQuill
+      {/* <ReactQuill
         value={biography}
         onChange={setBiography}
         placeholder="Përshkrimi (biography)"
@@ -60,7 +59,7 @@ const PersonalityForm = () => {
         value={short_description}
         onChange={setShortDescription}
         placeholder="Përshkrimi i shkurte"
-      />
+      /> */}
       <input
         type="date"
         value={birthDate}
