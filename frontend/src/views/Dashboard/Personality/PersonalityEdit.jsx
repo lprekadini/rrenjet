@@ -164,6 +164,25 @@ export default function PersonalityEdit() {
             </div>
 
             {/* Biography */}
+
+            <div className="col-span-full">
+              <label className="block text-sm font-medium text-gray-900">
+                Short Description
+              </label>
+              <div className="mt-2">
+                <textarea
+                  rows={4}
+                  value={personality?.short_description || ""}
+                  onChange={(e) =>
+                    setPersonality({
+                      ...personality,
+                      short_description: e.target.value,
+                    })
+                  }
+                  className="block w-full rounded-md border border-gray-300 p-2 text-base text-gray-900"
+                />
+              </div>
+            </div>
             <div className="col-span-full">
               <label className="block text-sm font-medium text-gray-900">
                 Biography
@@ -189,24 +208,6 @@ export default function PersonalityEdit() {
                   }
                   className="block w-full rounded-md border border-gray-300 p-2 text-base text-gray-900"
                 /> */}
-              </div>
-            </div>
-            <div className="col-span-full">
-              <label className="block text-sm font-medium text-gray-900">
-                Short Description
-              </label>
-              <div className="mt-2">
-                <textarea
-                  rows={4}
-                  value={personality?.short_description || ""}
-                  onChange={(e) =>
-                    setPersonality({
-                      ...personality,
-                      short_description: e.target.value,
-                    })
-                  }
-                  className="block w-full rounded-md border border-gray-300 p-2 text-base text-gray-900"
-                />
               </div>
             </div>
 
