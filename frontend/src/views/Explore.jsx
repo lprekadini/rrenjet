@@ -38,7 +38,7 @@ export default function Explore() {
     <div className="bg-white">
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <div className="my-3">
-          <h2>Filter by Category</h2>
+          <h2>Filtro sipas kategoris</h2>
           <div className="flex justify-start gap-4 py-4">
             {categories.map((category) => (
               <button

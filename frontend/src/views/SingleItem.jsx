@@ -65,7 +65,7 @@ export default function SingleItem() {
                       key={item.id}
                       alt={item.imageAlt}
                       src={`${API_BASE_URL}${item.image_url}`}
-                      className={"rounded-lg lg:col-span-2 lg:row-span-2"}
+                      className={"rounded-lg lg:col-span-2 lg:row-span-2 w-full"}
                     />
                   </div>
                 </div>
