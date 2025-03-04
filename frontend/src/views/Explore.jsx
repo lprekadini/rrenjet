@@ -71,7 +71,7 @@ export default function Explore() {
                 <p className="text-gray-500 text-sm font-light">
                   {new Date(person.birth_date).getFullYear()}{" "}
                   {person.death_date
-                    ? `/ ${new Date(person.death_date).getFullYear()}`
+                    ? `- ${new Date(person.death_date).getFullYear()}`
                     : ""}
                 </p>
               </div>

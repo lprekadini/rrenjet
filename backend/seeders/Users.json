@@ -1,7 +1,10 @@
 [
   {
     "id": 3,
-    "name": "",
+    "username": "admin",
+    "email": "admin@rrenjet.com",
+    "password": "$2b$10$rZ8ORkj37jnirTRj7Boka.JRg7nDcymXlPGxEymzY/YxERoQQacrO",
+    "role": "admin",
     "createdAt": "2025-03-04 18:19:06",
     "updatedAt": "2025-03-04 18:19:06"
   }

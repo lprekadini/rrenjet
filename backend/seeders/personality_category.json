@@ -1,32 +1,32 @@
 [
   {
-    "created_at": "2025-03-04 18:25:52",
-    "updated_at": "2025-03-04 18:25:52",
-    "value1": 6,
-    "value2": 7
+    "createdAt": "2025-03-04 18:25:52",
+    "updatedAt": "2025-03-04 18:25:52",
+    "PersonalityId": 6,
+    "CategoryId": 7
   },
   {
-    "created_at": "2025-03-04 18:25:52",
-    "updated_at": "2025-03-04 18:25:52",
-    "value1": 6,
-    "value2": 8
+    "createdAt": "2025-03-04 18:25:52",
+    "updatedAt": "2025-03-04 18:25:52",
+    "PersonalityId": 6,
+    "CategoryId": 8
   },
   {
-    "created_at": "2025-03-04 18:28:46",
-    "updated_at": "2025-03-04 18:28:46",
-    "value1": 7,
-    "value2": 5
+    "createdAt": "2025-03-04 18:28:46",
+    "updatedAt": "2025-03-04 18:28:46",
+    "PersonalityId": 7,
+    "CategoryId": 5
   },
   {
-    "created_at": "2025-03-04 18:32:04",
-    "updated_at": "2025-03-04 18:32:04",
-    "value1": 9,
-    "value2": 5
+    "createdAt": "2025-03-04 18:32:04",
+    "updatedAt": "2025-03-04 18:32:04",
+    "PersonalityId": 9,
+    "CategoryId": 5
   },
   {
-    "created_at": "2025-03-04 18:32:04",
-    "updated_at": "2025-03-04 18:32:04",
-    "value1": 9,
-    "value2": 6
+    "createdAt": "2025-03-04 18:32:04",
+    "updatedAt": "2025-03-04 18:32:04",
+    "PersonalityId": 9,
+    "CategoryId": 6
   }
 ]
