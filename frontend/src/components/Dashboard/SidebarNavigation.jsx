@@ -10,14 +10,15 @@ import {
   UsersIcon,
 } from "@heroicons/react/24/outline";
 const navigation = [
-  { name: "Home", href: "/home", icon: HomeIcon },
-  { name: "Dashboard", href: "/dashboard", icon: ChartPieIcon },
+  { name: "Home", href: "/home", icon: HomeIcon, roles: ["user", "admin"]  },
+  { name: "Dashboard", href: "/dashboard", icon: ChartPieIcon, roles: ["user", "admin"]  },
   {
     name: "Personality",
     href: "/dashboard/personality",
     icon: UsersIcon,
+    roles: ["admin"] 
   },
-  { name: "Categories", href: "/dashboard/categories", icon: FolderIcon },
+  { name: "Categories", href: "/dashboard/categories", icon: FolderIcon, roles: ["admin"]  },
   // { name: "Calendar", href: "#", icon: CalendarIcon },
   // { name: "Documents", href: "#", icon: DocumentDuplicateIcon },
   // { name: "Reports", href: "#", icon: ChartPieIcon },
@@ -28,6 +29,10 @@ function classNames(...classes) {
 }
 
 export default function SidebarNavigation({ desktop = false }) {
+  const user = JSON.parse(localStorage.getItem("user")); // Parse stored user data
+const userRole = user?.role || "user";
+const filteredNavigation = navigation.filter((item) => item.roles.includes(userRole));
+
   const location = useLocation();
   return (
     <>
@@ -49,7 +54,7 @@ export default function SidebarNavigation({ desktop = false }) {
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
-                    {navigation.map((item) => (
+                    {filteredNavigation.map((item) => (
                       <Link
                         key={item.name}
                         to={item.href}

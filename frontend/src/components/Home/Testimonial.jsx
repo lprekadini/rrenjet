@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function Testimonial({img}) {
   return (
-    <div className="mx-auto mt-32 max-w-7xl sm:mt-56 sm:px-6 lg:px-8">
+    <div className="mx-auto mt-10 max-w-7xl sm:px-6 lg:px-8">
       <div className="relative overflow-hidden bg-gray-900 px-6 py-20 shadow-xl sm:rounded-3xl sm:px-10 sm:py-24 md:px-12 lg:px-20 min-h-[400px]">
         <img
           alt=""

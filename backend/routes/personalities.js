@@ -71,12 +71,18 @@ router.get("/search", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
+    const { categoryId } = req.query; // Get categoryId from query params
+
+    const whereCondition = categoryId ? { id: categoryId } : {}; // Apply filter if categoryId is provided
+
     const personalities = await Personality.findAll({
       include: {
         model: Category,
-        through: { attributes: [] }, // Exclude join table attributes
+        where: whereCondition, 
+        through: { attributes: [] },
       },
     });
+
     res.json(personalities);
   } catch (error) {
     console.error(error);
